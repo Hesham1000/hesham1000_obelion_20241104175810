@@ -1,0 +1,8 @@
+CREATE TABLE Posts (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255) NOT NULL,
+    content TEXT NOT NULL,
+    image VARCHAR(255),
+    video VARCHAR(255),
+    isDraft BOOLEAN NOT NULL DEFAULT FALSE
+);
