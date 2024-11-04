@@ -1,54 +1,75 @@
 const express = require('express');
 const router = express.Router();
-const {
-  createPost,
-  getAllPosts,
-  getPostById,
-  updatePost,
-  deletePost,
-} = require('../controllers/postController');
+const postController = require('../controllers/postController');
+const commentController = require('../controllers/commentController');
 
-// Database integration
+// Post Routes
+router.get('/posts', postController.getAllPosts);
+router.get('/posts/:id', postController.getPostById);
+router.post('/posts', postController.createPost);
+router.put('/posts/:id', postController.updatePost);
+router.delete('/posts/:id', postController.deletePost);
+
+// Comment Routes
+router.get('/posts/:postId/comments', commentController.getCommentsByPostId);
+router.post('/posts/:postId/comments', commentController.addCommentToPost);
+router.put('/comments/:commentId', commentController.updateComment);
+router.delete('/comments/:commentId', commentController.deleteComment);
+
+module.exports = router;
+
+// Models update
 const { Sequelize, DataTypes } = require('sequelize');
 const sequelize = new Sequelize('database', 'username', 'password', {
   host: 'db',
-  dialect: 'mysql',
+  dialect: 'mysql'
 });
 
-// Define Post model
 const Post = sequelize.define('Post', {
   id: {
     type: DataTypes.INTEGER,
     autoIncrement: true,
-    primaryKey: true,
+    primaryKey: true
   },
   title: {
     type: DataTypes.STRING,
-    allowNull: false,
+    allowNull: false
   },
-  content: {
+  body: {
     type: DataTypes.TEXT,
-    allowNull: false,
+    allowNull: false
   },
-  image: {
-    type: DataTypes.STRING,
-  },
-  video: {
-    type: DataTypes.STRING,
-  },
-  isDraft: {
-    type: DataTypes.BOOLEAN,
-    defaultValue: false,
-  },
+  excerpt: {
+    type: DataTypes.STRING
+  }
 }, {
-  tableName: 'Posts',
+  tableName: 'Posts'
 });
 
-// Routes
-router.post('/posts', createPost);
-router.get('/posts', getAllPosts);
-router.get('/posts/:id', getPostById);
-router.put('/posts/:id', updatePost);
-router.delete('/posts/:id', deletePost);
+const Comment = sequelize.define('Comment', {
+  id: {
+    type: DataTypes.INTEGER,
+    autoIncrement: true,
+    primaryKey: true
+  },
+  postId: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    references: {
+      model: Post,
+      key: 'id'
+    }
+  },
+  text: {
+    type: DataTypes.STRING,
+    allowNull: false
+  },
+  author: {
+    type: DataTypes.STRING,
+    allowNull: false
+  }
+}, {
+  tableName: 'Comments'
+});
 
-module.exports = router;
+module.exports = { Post, Comment };

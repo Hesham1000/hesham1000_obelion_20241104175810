@@ -1,0 +1,126 @@
+/* PostDetail.css */
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  margin: 0;
+  padding: 0;
+}
+
+.header {
+  background-color: #fff;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header .branding {
+  font-size: 24px;
+  font-weight: bold;
+  color: #0073e6;
+}
+
+.header .nav-tabs {
+  display: flex;
+  list-style-type: none;
+  padding: 0;
+}
+
+.header .nav-tabs li {
+  margin-left: 20px;
+}
+
+.header .nav-tabs li a {
+  text-decoration: none;
+  color: #333;
+  font-size: 16px;
+}
+
+.main-content {
+  max-width: 800px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.post-list {
+  margin-top: 20px;
+}
+
+.post-list .post-item {
+  margin-bottom: 20px;
+  padding: 15px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.post-list .post-item h2 {
+  font-size: 20px;
+  margin: 0 0 10px 0;
+}
+
+.post-list .post-item a {
+  text-decoration: none;
+  color: #0073e6;
+  font-weight: bold;
+}
+
+.post-list .post-item p {
+  margin: 0;
+  line-height: 1.6;
+}
+
+.comment-section {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #e0e0e0;
+}
+
+.comment-section h3 {
+  font-size: 18px;
+  margin-bottom: 10px;
+}
+
+.comment-section form {
+  display: flex;
+  flex-direction: column;
+}
+
+.comment-section form textarea {
+  margin-bottom: 10px;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.comment-section form button {
+  align-self: flex-start;
+  padding: 10px 20px;
+  background-color: #0073e6;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.comment-section form button:hover {
+  background-color: #005bb5;
+}
+
+.footer {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #fff;
+  text-align: center;
+  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.footer a {
+  text-decoration: none;
+  color: #0073e6;
+  margin: 0 10px;
+}

@@ -1,51 +1,46 @@
 const { Model, DataTypes, Sequelize } = require('sequelize');
-
 const sequelize = new Sequelize('tanta_blogApp', 'root', 'root', {
   host: 'db',
   port: 3306,
-  dialect: 'mysql',
-  logging: false,
+  dialect: 'mysql'
 });
 
-class Post extends Model {}
-
-Post.init({
-  id: {
-    type: DataTypes.INTEGER,
-    autoIncrement: true,
-    primaryKey: true,
-  },
-  title: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
-  content: {
-    type: DataTypes.TEXT,
-    allowNull: false,
-    validate: {
-      notEmpty: true,
-    },
-  },
-  image: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  video: {
-    type: DataTypes.STRING,
-    allowNull: true,
-  },
-  isDraft: {
-    type: DataTypes.BOOLEAN,
-    allowNull: false,
-    defaultValue: false,
-  },
-}, {
-  sequelize,
-  modelName: 'Posts',
-  timestamps: false,
-});
+class Post extends Model {
+  static init(sequelize) {
+    super.init({
+      id: {
+        type: DataTypes.INTEGER,
+        autoIncrement: true,
+        primaryKey: true
+      },
+      title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Title cannot be empty'
+          }
+        }
+      },
+      body: {
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            msg: 'Body cannot be empty'
+          }
+        }
+      },
+      excerpt: {
+        type: DataTypes.STRING
+      }
+    }, {
+      sequelize,
+      modelName: 'Post',
+      tableName: 'Posts',
+      timestamps: false
+    });
+  }
+}
 
 module.exports = Post;

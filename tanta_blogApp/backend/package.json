@@ -12,13 +12,14 @@
     "license": "ISC",
     "dependencies": {
         "sequelize": "6.11.0",
-        "express": "4.17.1",
+        "express": "latest",
         "cors": "latest",
         "mysql": "latest",
         "mysql2": "latest"
     },
     "devDependencies": {
-        "sequelize": "6.6.5",
+        "sequelize": "6.10.3",
+        "eslint": "7.32.0",
         "sequelize-cli": "6.2.0"
     }
 }
